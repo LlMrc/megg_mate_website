@@ -11,8 +11,50 @@ class TabletteBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('tablette'),
-        centerTitle: true,
+        actions: [ PopupMenuItem(
+
+                    value: 1,
+
+                    child:  Row(
+                         mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset('assets/iconLink/iphone.png',
+                           width: 50,
+                            fit: BoxFit.cover,),
+                            const Text('For ios')
+                      ],
+                    ),
+                  ),
+                   PopupMenuItem(
+                    value: 1,
+                    child: Row(
+                      mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset('assets/iconLink/android.png',
+                           width: 30,
+                              fit: BoxFit.cover),
+                                const Text('For android')
+
+                      ],
+                    ),
+                  ),
+                   PopupMenuItem(
+                    value: 1,
+                    child:Row(
+                         mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset('assets/iconLink/windows.png',
+                            width: 30,
+                              fit: BoxFit.cover),
+                                const Text('For windows')
+                      ],
+                      
+                    ),
+                  ),
+                  
+            ],
+
+  
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

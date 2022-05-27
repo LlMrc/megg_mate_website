@@ -13,6 +13,7 @@ class DesktopBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+     
         title: const Text('Desktop'),
         centerTitle: true,
       ),

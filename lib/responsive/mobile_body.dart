@@ -10,6 +10,65 @@ class MobileBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            actions: [
+            PopupMenuButton(
+              iconSize: 70,
+              icon:Container(
+                height: 
+                40,
+               decoration: BoxDecoration(
+                 color: Colors.blue,
+                 borderRadius: BorderRadius.circular(4)
+               ),
+                child: const Center(child: Text('Download'))),
+              itemBuilder: (BuildContext context) =>
+            [
+               PopupMenuItem(
+
+                    value: 1,
+
+                    child:  Row(
+                         mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset('assets/iconLink/iphone.png',
+                           width: 50,
+                            fit: BoxFit.cover,),
+                            const Text('For ios')
+                      ],
+                    ),
+                  ),
+                   PopupMenuItem(
+                    value: 1,
+                    child: Row(
+                      mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset('assets/iconLink/android.png',
+                           width: 30,
+                              fit: BoxFit.cover),
+                                const Text('For android')
+
+                      ],
+                    ),
+                  ),
+                   PopupMenuItem(
+                    value: 1,
+                    child:Row(
+                         mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset('assets/iconLink/windows.png',
+                            width: 30,
+                              fit: BoxFit.cover),
+                                const Text('For windows')
+                      ],
+                      
+                    ),
+                  ),
+                  
+            ]
+
+             ),
+          
+        ],
           title: const Text('Mobile'),
           centerTitle: true,
         ),
