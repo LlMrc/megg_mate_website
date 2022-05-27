@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:megg_mate_website/responsive/tablete_body.dart';
 
+import '../constant/dimension.dart';
 import '../promot_screen.dart';
 import 'mobile_body.dart';
 
@@ -23,21 +24,19 @@ class DesktopBody extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  Container(
-                      padding: const EdgeInsets.all(8),
-                      height: 340,
-                  
-                        child: PromotScreen(),),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: PromotScreen(image: image),
+                  ),
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height,
                       child: ListView(
+                      
                             shrinkWrap: true,          
-                              children:const [ 
-                               BuildRow(),
-                                  BuildRow(),
-                                   BuildRow(),
-                                     BuildRow(),   
+                              children: [ 
+                                 BuildRow(child1: image[2],child: image[1],),
+                                 BuildRow(child: image[0],),
                               ]),
                     ),
                   )
@@ -52,6 +51,11 @@ class DesktopBody extends StatelessWidget {
                 color: Colors.blue,
                 ),
                 width: 300,
+                child: Column(
+                  children: [
+                    
+                  ],
+                ),
               )
             )
           ],

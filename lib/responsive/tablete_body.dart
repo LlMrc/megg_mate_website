@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 
+import '../constant/dimension.dart';
 import '../promot_screen.dart';
 import 'mobile_body.dart';
 
@@ -11,85 +11,87 @@ class TabletteBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-           title: const Text('tablette'),   centerTitle: true,
+        title: const Text('tablette'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-                height: 350,
-              child:  PromotScreen(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PromotScreen(
+                  image: image,
+                ),
               ),
-             ),
-            Expanded(
-              child: ListView(
-                    shrinkWrap: true,
-                    
-                      children:const [ 
-                       BuildRow(),
-                          BuildRow(),
-                           BuildRow(),
-                             BuildRow(),
-                   
+              Flexible(
+                child: SizedBox(
+          height: MediaQuery.of(context).size.height,
 
-                   
-                  
-                      ]),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+                  child: ListView( 
+                    primary: false,
+                    shrinkWrap: true,
+              children: [
+          BuildRow(child1: image[2],child: image[1],),
+          BuildRow(child: image[0],),
+                    
+              ], 
+          ),
+                ),
+                  ),
+            ]
+              
+                  ))));
+    }
 }
 
 class BuildRow extends StatelessWidget {
+  final Widget? child;
+   final Widget? child1;
+   
   const BuildRow({
     Key? key,
+     this.child,  this.child1,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return LimitedBox(
-     maxHeight: 200.0,
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.stretch,
-      
-           mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-           
-       const BuildContainer(),
-        Flexible(
-          flex: 1,
-            child: Container( width: 8),
-          ),
-           const BuildContainer(),
-        ],
-      ),
-    ),
-                    );
-  }
-}
-
-class BuildContainer extends StatelessWidget {
-  const BuildContainer({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Flexible(
-       flex: 20,
-      child: Container(
-         decoration: BoxDecoration(
-             color: const Color(0xff40DFEF),
-           borderRadius: BorderRadius.circular(12)
-         ),
-      
-                           
+      maxHeight: 200.0,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
+              flex: 20,
+              child: Container(
+                width: 400,
+                decoration: BoxDecoration(
+                    color: const Color(0xff40DFEF),
+                    borderRadius: BorderRadius.circular(12)),
+                child: child??const Icon(Icons.abc),
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: Container(width: 8),
+            ),
+            Flexible(
+              flex: 20,
+              child: Container(
+                width: 400,
+                decoration: BoxDecoration(
+                    color: const Color(0xff40DFEF),
+                    borderRadius: BorderRadius.circular(12)),
+                child: child1?? const Icon(Icons.abc),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

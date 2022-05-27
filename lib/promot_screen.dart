@@ -1,67 +1,50 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class PromotScreen extends StatefulWidget {
-  final Color? color;
+  final List<Image> image;
 
-  const PromotScreen({
-    Key? key,  this.color, 
-  }) : super(key: key);
+
+  PromotScreen({Key? key, required this.image}) : super(key: key);
 
   @override
   State<PromotScreen> createState() => _PromotScreenState();
 }
 
 class _PromotScreenState extends State<PromotScreen> {
-  final PageController _controller =
-      PageController(viewportFraction: 0.8, initialPage: 1);
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  int activeIndex = 0;
+
+  CarouselController buttonCarouselController = CarouselController();
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        IconButton(onPressed: (){}, icon: const Icon(Icons.chevron_left, color: Colors.white,)),
-        Container(
-          padding: const EdgeInsets.all(8),
-          height: 400,
-          child: PageView(
-            controller: _controller,
-            children: [
-                Container(
-          decoration: BoxDecoration(
-        
-            borderRadius: BorderRadiusDirectional.circular(14),
-          ),
-          child:  Image.asset('assets/images/meggPdf.png',
-          fit: BoxFit.cover),
-        ),
-          Container(
-          decoration: BoxDecoration(
+    return Column(children: [
+      Container(    
+        padding: const EdgeInsets.all(8),
+        child: CarouselSlider(        
+          items: widget.image,
+          carouselController: buttonCarouselController,
+          options: CarouselOptions(
+            onPageChanged: (index, reason) {
+              setState(() => activeIndex = index);
+            },
          
-            borderRadius: BorderRadiusDirectional.circular(14),
-          ),
-          child:  Image.asset('assets/images/meggPdf1.png'),
-        ),
-           
-                  Container(
-          decoration: BoxDecoration(
-           
-            borderRadius: BorderRadiusDirectional.circular(14),
-          ),
-          child:  Image.asset('assets/images/meggPdf2.png'),
-        )
-            ],
+            autoPlay: false,
+            enlargeCenterPage: true,
+            viewportFraction: 0.9,
+            aspectRatio: 2.0,
+            initialPage: 2,
           ),
         ),
-          IconButton(onPressed: (){}, icon: const Icon(Icons.chevron_left, color: Colors.white,))
-      ],
-    );
+      ),
+      smoothIndicator()
+    ]);
   }
 
- 
+  Widget smoothIndicator() => AnimatedSmoothIndicator(
+        activeIndex: activeIndex,
+        count: widget.image.length,
+        effect: const JumpingDotEffect(dotWidth: 20, dotHeight: 20),
+      );
 }

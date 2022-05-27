@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../constant/dimension.dart';
 import '../promot_screen.dart';
 
 class MobileBody extends StatelessWidget {
-  const MobileBody({Key? key}) : super(key: key);
+  MobileBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +18,31 @@ class MobileBody extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const PromotScreen(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PromotScreen(
+                  image: image,
+                ),
+              ),
               Flexible(
                 child: ListView.builder(
                     primary: false,
                     shrinkWrap: true,
-                    itemCount: 8,
+                    itemCount: image.length,
                     itemBuilder: (context, index) {
-                      return Card(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          color: const Color(0xff40DFEF),
-                          height: 150,
+                      var imageBody = image[index];
+                      return Container(
+                        height: 90,
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          shadowColor: Colors.grey,
+                          child: ListTile(
+                            subtitle: const Text('subtitle'),
+                            leading: imageBody,
+                          hoverColor: Colors.purple.shade100,
+                            title: const Text('image to show'),
+                            onTap: () {},
+                          ),
                         ),
                       );
                     }),
@@ -37,6 +51,6 @@ class MobileBody extends StatelessWidget {
           ),
         ));
   }
+
+ 
 }
-
-
