@@ -6,14 +6,22 @@ import '../constant/dimension.dart';
 import '../promot_screen.dart';
 import 'mobile_body.dart';
 
-class DesktopBody extends StatelessWidget {
+class DesktopBody extends StatefulWidget {
   const DesktopBody({Key? key}) : super(key: key);
 
+  @override
+  State<DesktopBody> createState() => _DesktopBodyState();
+}
+
+class _DesktopBodyState extends State<DesktopBody> {
+  List<Image>_image = image;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-     
+     actions: [
+       
+     ],
         title: const Text('Desktop'),
         centerTitle: true,
       ),
@@ -23,21 +31,28 @@ class DesktopBody extends StatelessWidget {
           children: [
             Expanded(
               child: ListView(
+                shrinkWrap: true,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: PromotScreen(image: image),
+                    child: PromotScreen(image: _image),
                   ),
                   Expanded(
                     child: SizedBox(
                       height: MediaQuery.of(context).size.height,
                       child: ListView(shrinkWrap: true, children: [
                         BuildRow(
-                          child1: image[2],
-                          child: image[1],
+                          child1: InkWell(
+                            onTap: () => setImageList(image),
+                            child: image[2]),
+                          child: InkWell(
+                            onTap: ()=> setImageList(audio),
+                            child: audio[1]),
                         ),
                         BuildRow(
-                          child: image[0],
+                          child: InkWell(
+                            onTap: ()=> setImageList(rapport),
+                            child: rapport[0]),
                         ),
                       ]),
                     ),
@@ -56,15 +71,15 @@ class DesktopBody extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:[
-                       LinkButton(icon: SizedBox(child: Image.asset('assets/iconLink/iphone.png',
+                       LinkButton(icon: SizedBox(child: Image.asset('assets/icon_link/iphone.png',
                        width: 50,
                        height: 50,
                         fit: BoxFit.cover,)),
                          text: 'Download for ios', ontap: () {  }),
-                        LinkButton(icon: SizedBox(child: Image.asset('assets/iconLink/android.png', 
+                        LinkButton(icon: SizedBox(child: Image.asset('assets/icon_link/android.png', 
                        
                          fit: BoxFit.cover)), text: 'Download for android', ontap: () {  }),
-                         LinkButton(icon: SizedBox(child: Image.asset('assets/iconLink/windows.png',
+                         LinkButton(icon: SizedBox(child: Image.asset('assets/icon_link/windows.png',
                          width: 50,
                        height: 50,
                           fit: BoxFit.cover)), text: 'Download for windows', ontap: () {  }),
@@ -75,6 +90,11 @@ class DesktopBody extends StatelessWidget {
         ),
       ),
     );
+  }
+
+    List<Image> setImageList(List<Image> image) {
+    setState(() => _image = image);
+    return image;
   }
 }
 

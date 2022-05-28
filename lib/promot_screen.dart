@@ -6,7 +6,7 @@ class PromotScreen extends StatefulWidget {
   final List<Image> image;
 
 
-  PromotScreen({Key? key, required this.image}) : super(key: key);
+  const PromotScreen({Key? key, required this.image}) : super(key: key);
 
   @override
   State<PromotScreen> createState() => _PromotScreenState();

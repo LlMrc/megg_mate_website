@@ -4,98 +4,120 @@ import '../constant/dimension.dart';
 import '../promot_screen.dart';
 import 'mobile_body.dart';
 
-class TabletteBody extends StatelessWidget {
-  const TabletteBody({Key? key}) : super(key: key);
+class TabletteBody extends StatefulWidget {
+  TabletteBody({Key? key}) : super(key: key);
+
+  @override
+  State<TabletteBody> createState() => _TabletteBodyState();
+}
+
+class _TabletteBodyState extends State<TabletteBody> {
+   List<Image> _image = image;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [ PopupMenuItem(
-
-                    value: 1,
-
-                    child:  Row(
-                         mainAxisAlignment:MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset('assets/iconLink/iphone.png',
-                           width: 50,
-                            fit: BoxFit.cover,),
-                            const Text('For ios')
-                      ],
-                    ),
+        appBar: AppBar(
+          leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+          actions: [
+            MaterialButton(onPressed: (){}, child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.asset(
+                    'assets/icon_link/iphone.png',
+                    width: 50,
+                    fit: BoxFit.cover,
                   ),
-                   PopupMenuItem(
-                    value: 1,
-                    child: Row(
-                      mainAxisAlignment:MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset('assets/iconLink/android.png',
-                           width: 30,
-                              fit: BoxFit.cover),
-                                const Text('For android')
+                  const Text('For ios')
+                ],
+              )),
+              MaterialButton(onPressed: (){
 
-                      ],
-                    ),
+              }, child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.asset('assets/icon_link/android.png',
+                      width: 30, fit: BoxFit.cover),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 6),
+                    child: Text('For android'),
                   ),
-                   PopupMenuItem(
-                    value: 1,
-                    child:Row(
-                         mainAxisAlignment:MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset('assets/iconLink/windows.png',
-                            width: 30,
-                              fit: BoxFit.cover),
-                                const Text('For windows')
-                      ],
-                      
-                    ),
-                  ),
-                  
-            ],
-
-  
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
+                  MaterialButton(onPressed: (){},
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.asset('assets/icon_link/windows.png',
+                      width: 30, fit: BoxFit.cover),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 6),
+                    child: Text('For windows'),
+                  )
+                ],
+              ),)
+                ],
+              )),
+          
+       
+      
+          ],
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: PromotScreen(
-                  image: image,
-                ),
+                child: PromotScreen(image: _image),
               ),
               Flexible(
                 child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-
-                  child: ListView( 
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView(
                     primary: false,
                     shrinkWrap: true,
-              children: [
-          BuildRow(child1: image[2],child: image[1],),
-          BuildRow(child: image[0],),
-                    
-              ], 
-          ),
-                ),
+                    children: [
+                      BuildRow(
+                        child1: InkWell(
+                            onTap: () {
+                              setImageList(image);
+                           
+                            },
+                            child: image[2]),
+                        child: InkWell(
+                            onTap: () {
+                              setImageList(audio);
+                             
+                            },
+                            child: audio[1]),
+                      ),
+                      BuildRow(
+                        child: InkWell(
+                            onTap: () {
+                              setImageList(rapport);
+                            },
+                            child: rapport[0]),
+                      ),
+                    ],
                   ),
-            ]
-              
-                  ))));
-    }
+                ),
+              ),
+            ]))));
+  }
+
+  List<Image> setImageList(List<Image> image) {
+    setState(() => _image = image);
+    return image;
+  }
 }
 
 class BuildRow extends StatelessWidget {
   final Widget? child;
-   final Widget? child1;
-   
+  final Widget? child1;
+
   const BuildRow({
     Key? key,
-     this.child,  this.child1,
+    this.child,
+    this.child1,
   }) : super(key: key);
 
   @override
@@ -115,7 +137,7 @@ class BuildRow extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: const Color(0xff40DFEF),
                     borderRadius: BorderRadius.circular(12)),
-                child: child??const Icon(Icons.abc),
+                child: child ?? const Icon(Icons.abc),
               ),
             ),
             Flexible(
@@ -129,7 +151,7 @@ class BuildRow extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: const Color(0xff40DFEF),
                     borderRadius: BorderRadius.circular(12)),
-                child: child1?? const Icon(Icons.abc),
+                child: child1 ?? const Icon(Icons.abc),
               ),
             )
           ],
