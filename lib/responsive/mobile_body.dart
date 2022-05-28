@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:megg_mate_website/constant/color.dart';
 
 import '../constant/dimension.dart';
 import '../promot_screen.dart';
 
 class MobileBody extends StatefulWidget {
-  MobileBody({Key? key}) : super(key: key);
+  const MobileBody({Key? key}) : super(key: key);
 
   @override
   State<MobileBody> createState() => _MobileBodyState();
 }
 
 class _MobileBodyState extends State<MobileBody> {
-  List<Image> _image = image;
+   List<Image> _image = image;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: light,
           leading: IconButton(
             icon: const Icon(Icons.menu),
             onPressed: () {},
@@ -74,10 +76,10 @@ class _MobileBodyState extends State<MobileBody> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+           Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: PromotScreen(
-              image: _image,
+              carrousel: _image,
             ),
           ),
           Flexible(
@@ -86,12 +88,22 @@ class _MobileBodyState extends State<MobileBody> {
               children: [
                 buildListView(
                   image: image[1],
-                  ontap: () => setImageList(image), title: 'Meggev PDF', subtitle: 'Read book while enjoying your favorite song',
+                  ontap: () => setImageList(image),
+                  title: 'Meggev PDF',
+                  subtitle: 'Read book while enjoying your favorite song',
                 ),
                 buildListView(
-                    image: audio[1], ontap: () => setImageList(audio), title: 'Audio Player & Photo editor', subtitle: 'Play audio, edit and share image',),
+                  image: audio[1],
+                  ontap: () => setImageList(audio),
+                  title: 'Audio Player & Photo editor',
+                  subtitle: 'Play audio, edit and share image',
+                ),
                 buildListView(
-                    image: rapport[1], ontap: () => setImageList(rapport), title: 'Rapport', subtitle: 'Organize and optimize your task in the minitery',)
+                  image: rapport[1],
+                  ontap: () => setImageList(rapport),
+                  title: 'Rapport',
+                  subtitle: 'Organize and optimize your task in the minitery',
+                )
               ],
             ),
           )
@@ -107,12 +119,14 @@ class _MobileBodyState extends State<MobileBody> {
 class buildListView extends StatelessWidget {
   final String title;
   final String? subtitle;
-  final Image image;
+  final Widget image;
   final VoidCallback ontap;
   const buildListView({
     Key? key,
     required this.ontap,
-    required this.image, required this.title, this.subtitle,
+    required this.image,
+    required this.title,
+    this.subtitle,
   }) : super(key: key);
 
   @override
@@ -121,12 +135,18 @@ class buildListView extends StatelessWidget {
       height: 90,
       padding: const EdgeInsets.all(8.0),
       child: Card(
-        shadowColor: Colors.grey,
+        shadowColor: Colors.black,
         child: ListTile(
-          subtitle:  Text(subtitle??'',overflow: TextOverflow.fade,),
+          subtitle: Text(
+            subtitle ?? '',
+            overflow: TextOverflow.fade,
+          ),
           leading: image,
           hoverColor: Colors.purple.shade50,
-          title: Text(title, overflow: TextOverflow.fade,),
+          title: Text(
+            title,
+            overflow: TextOverflow.fade,
+          ),
           onTap: ontap,
         ),
       ),

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../constant/color.dart';
 import '../constant/dimension.dart';
 import '../promot_screen.dart';
 import 'mobile_body.dart';
 
 class TabletteBody extends StatefulWidget {
-  TabletteBody({Key? key}) : super(key: key);
+  const TabletteBody({Key? key}) : super(key: key);
 
   @override
   State<TabletteBody> createState() => _TabletteBodyState();
@@ -18,6 +19,7 @@ class _TabletteBodyState extends State<TabletteBody> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: light,
           leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
           actions: [
             MaterialButton(onPressed: (){}, child: Row(
@@ -31,9 +33,8 @@ class _TabletteBodyState extends State<TabletteBody> {
                   const Text('For ios')
                 ],
               )),
-              MaterialButton(onPressed: (){
-
-              }, child:Row(
+              MaterialButton(onPressed: (){ },
+               child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Image.asset('assets/icon_link/android.png',
@@ -41,7 +42,7 @@ class _TabletteBodyState extends State<TabletteBody> {
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 6),
                     child: Text('For android'),
-                  ),
+                  )])),
                   MaterialButton(onPressed: (){},
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -53,21 +54,21 @@ class _TabletteBodyState extends State<TabletteBody> {
                     child: Text('For windows'),
                   )
                 ],
-              ),)
-                ],
+     
+                
               )),
           
        
-      
+       IconButton(onPressed: (){}, icon: const CircleAvatar(child: Icon(Icons.person),))
           ],
         ),
         body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Padding(
+               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: PromotScreen(image: _image),
+                child: PromotScreen(carrousel: _image,),
               ),
               Flexible(
                 child: SizedBox(
@@ -101,7 +102,8 @@ class _TabletteBodyState extends State<TabletteBody> {
                   ),
                 ),
               ),
-            ]))));
+            ]))),
+            backgroundColor: Colors.white,);
   }
 
   List<Image> setImageList(List<Image> image) {
@@ -135,7 +137,7 @@ class BuildRow extends StatelessWidget {
               child: Container(
                 width: 400,
                 decoration: BoxDecoration(
-                    color: const Color(0xff40DFEF),
+                    color: blue,
                     borderRadius: BorderRadius.circular(12)),
                 child: child ?? const Icon(Icons.abc),
               ),
@@ -149,7 +151,7 @@ class BuildRow extends StatelessWidget {
               child: Container(
                 width: 400,
                 decoration: BoxDecoration(
-                    color: const Color(0xff40DFEF),
+                    color: blue,
                     borderRadius: BorderRadius.circular(12)),
                 child: child1 ?? const Icon(Icons.abc),
               ),

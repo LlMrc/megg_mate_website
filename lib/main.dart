@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:megg_mate_website/constant/color.dart';
 
 import 'MyHomePage.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.grey
+        primarySwatch: Colors.blue
       ),
       home: const MyHomePage(),
     );
