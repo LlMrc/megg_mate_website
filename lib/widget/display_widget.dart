@@ -6,10 +6,6 @@ class DisplayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.purpleAccent,
-      
-      child: child,
-    );
+    return Drawer();
   }
 }

@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../constant/color.dart';
 import '../constant/dimension.dart';
 import '../promot_screen.dart';
+import '../page/About.dart';
+import '../page/contact.dart';
+import '../widget/drawer_widget.dart';
 import 'mobile_body.dart';
 
 class TabletteBody extends StatefulWidget {
@@ -14,13 +17,14 @@ class TabletteBody extends StatefulWidget {
 
 class _TabletteBodyState extends State<TabletteBody> {
    List<Image> _image = image;
-
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       drawer: const DrawerWidget(),
         appBar: AppBar(
           backgroundColor: light,
-          leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+       iconTheme:const IconThemeData(color: Colors.black87),
           actions: [
             MaterialButton(onPressed: (){}, child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -109,6 +113,32 @@ class _TabletteBodyState extends State<TabletteBody> {
   List<Image> setImageList(List<Image> image) {
     setState(() => _image = image);
     return image;
+  }
+
+
+
+   Widget mySelectedWidget({required Widget child}) {
+    switch (index) {
+      case 0:
+        {
+          child = child;
+        }
+        break;
+      case 1:
+        {
+          child = About();
+        }
+        break;
+      case 2:
+        {
+          child = Contact();
+        }
+        break;
+      default:
+        const Text('An error occur');
+    }
+
+    return child;
   }
 }
 

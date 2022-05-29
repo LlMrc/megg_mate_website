@@ -3,6 +3,9 @@ import 'package:megg_mate_website/constant/color.dart';
 
 import '../constant/dimension.dart';
 import '../promot_screen.dart';
+import '../page/About.dart';
+import '../page/contact.dart';
+import '../widget/drawer_widget.dart';
 
 class MobileBody extends StatefulWidget {
   const MobileBody({Key? key}) : super(key: key);
@@ -12,16 +15,18 @@ class MobileBody extends StatefulWidget {
 }
 
 class _MobileBodyState extends State<MobileBody> {
-   List<Image> _image = image;
+  List<Image> _image = image;
+  int index = 0;
+  bool isCollapsed = false;
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
+      drawer: const DrawerWidget(),
         appBar: AppBar(
+           iconTheme:const IconThemeData(color: Colors.black87),
           backgroundColor: light,
-          leading: IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {},
-          ),
+     
           actions: [
             PopupMenuButton(
                 iconSize: 70,
@@ -33,7 +38,7 @@ class _MobileBodyState extends State<MobileBody> {
                     child: const Center(child: Text('Download'))),
                 itemBuilder: (BuildContext context) => [
                       PopupMenuItem(
-                        value: 1,
+                        onTap: () {},
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -76,7 +81,7 @@ class _MobileBodyState extends State<MobileBody> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Column(mainAxisSize: MainAxisSize.min, children: [
-           Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: PromotScreen(
               carrousel: _image,
@@ -113,6 +118,30 @@ class _MobileBodyState extends State<MobileBody> {
   List<Image> setImageList(List<Image> image) {
     setState(() => _image = image);
     return image;
+  }
+
+  Widget mySelectedWidget({required Widget child}) {
+    switch (index) {
+      case 0:
+        {
+          child = child;
+        }
+        break;
+      case 1:
+        {
+          child = About();
+        }
+        break;
+      case 2:
+        {
+          child = Contact();
+        }
+        break;
+      default:
+        const Text('An error occur');
+    }
+
+    return child;
   }
 }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:megg_mate_website/responsive/tablete_body.dart';
-import 'package:megg_mate_website/widget/About.dart';
-import 'package:megg_mate_website/widget/contact.dart';
+import 'package:megg_mate_website/page/About.dart';
+import 'package:megg_mate_website/page/contact.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../constant/color.dart';
@@ -22,23 +22,32 @@ class _DesktopBodyState extends State<DesktopBody> {
 
   @override
   Widget build(BuildContext context) {
-  //  Widget thisScreen = mainScreen(image: _image);
+    //  Widget thisScreen = mainScreen(image: _image);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: light,
-        leading: TextButton(child: const Text('Home'), onPressed: () {}),
+        leading: TextButton(
+            child: const Text('Home', style: TextStyle(color: Colors.black)),
+            onPressed: () {}),
         actions: [
           TextButton(
-              child: const Text('App'),
+              child: const Text('App', style: TextStyle(color: Colors.black)),
               onPressed: () {
-                setState(() => index = 2);
+                setState(() => index = 0);
               }),
           TextButton(
-              child: const Text('About'),
+              child: const Text('About', style: TextStyle(color: Colors.black)),
               onPressed: () {
                 setState(() => index = 1);
               }),
-          TextButton(child: const Text('Contact'), onPressed: () {}),
+          TextButton(
+              child: const Text(
+                'Contact',
+                style: TextStyle(color: Colors.black),
+              ),
+              onPressed: () {
+                setState(() => index = 2);
+              }),
           IconButton(
               onPressed: () {},
               icon: const CircleAvatar(
@@ -52,43 +61,71 @@ class _DesktopBodyState extends State<DesktopBody> {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    width: 200,
+                  const Flexible(
+                    child: SizedBox(
+                      width: 50,
+                    ),
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 2,
                     height: MediaQuery.of(context).size.height,
-                    child: ListView(
-                      primary: false,
-                      shrinkWrap: true,
+                    child: Column(
                       children: [
-                        Container(
-                          child:selectedWidget()
+                        mySelectedWidget(
+                          child: PromotScreen(carrousel: _image),
                         ),
-                        BuildRow(
-                          child1: InkWell(
-                              onTap: () {
-                                setImageList(image);
+                    const  SizedBox(height: 20,),
+                        Flexible(
+                        
+                          child: SizedBox(
+                            height: 100,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                              itemCount: 4,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    
+                                    decoration: BoxDecoration(
+                                           color: blue,
+                                      borderRadius: BorderRadius.circular(25)
+                                    ),
+                                  height: 100,
+                                    width: 200,                              
+                             
+                                  ),
+                                );
                               },
-                              child: image[2]),
-                          child: InkWell(
-                              onTap: () {
-                                setImageList(audio);
-                              },
-                              child: audio[1]),
-                        ),
-                        BuildRow(
-                          child: InkWell(
-                              onTap: () {
-                                setImageList(rapport);
-                              },
-                              child: rapport[0]),
-                        ),
+                        
+                              //      BuildRow(
+                              //   child1: InkWell(
+                              //       onTap: () {
+                              //         setImageList(image);
+                              //       },
+                              //       child: image[2]),
+                              //   child: InkWell(
+                              //       onTap: () {
+                              //         setImageList(audio);
+                              //       },
+                              //       child: audio[1]),
+                              // ),
+                              // BuildRow(
+                              //   child: InkWell(
+                              //       onTap: () {
+                              //         setImageList(rapport);
+                              //       },
+                              //       child: rapport[0]),
+                              // ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -146,10 +183,6 @@ class _DesktopBodyState extends State<DesktopBody> {
     );
   }
 
-  Widget changeScreen(Widget selectedScreen) {
-    return DisplayWidget(child: selectedScreen);
-  }
-
   List<Image> setImageList(List<Image> image) {
     setState(() => _image = image);
     return image;
@@ -163,30 +196,32 @@ class _DesktopBodyState extends State<DesktopBody> {
             .copyWith(color: Colors.black));
   }
 
+  Widget mySelectedWidget({required Widget child}) {
+    switch (index) {
+      case 0:
+        {
+          child = child;
+        }
+        break;
+      case 1:
+        {
+          child = About();
+        }
+        break;
+      case 2:
+        {
+          child = Contact();
+        }
+        break;
+      default:
+        const Text('An error occur');
+    }
+
+    return child;
+  }
 
   // select widget///////////////////////////////////////////////////////
 
-   selectedWidget() {
-    switch (index) {
-      case 0:
-       PromotScreen(carrousel: _image);
-        break;
-         case 1:
-         {
-    Contact();
-         }
-    
-      
-        break;
-         case 2:
-        {  About(); }
-     
-        break;
-      default: 
-      return PromotScreen(carrousel: _image);
-    }
-
-  }
 }
 
 class LinkButton extends StatelessWidget {
