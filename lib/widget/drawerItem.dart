@@ -7,14 +7,15 @@ class DrawerItem {
   DrawerItem({required this.title, required this.icon});
 }
 
-final ItemFirst = [
-  DrawerItem(icon: Icons.home , title: 'title 1'),
-   DrawerItem(icon: Icons.people, title: 'title 2'),
-    DrawerItem(icon: Icons.settings, title: 'title 3'),
-     DrawerItem(icon:Icons.abc , title: 'title 4'),
+final itemFirst = [
+  DrawerItem(icon: Icons.home , title: 'HOME '),
+   DrawerItem(icon: Icons.adb_sharp, title: 'APPLICATION'),
+    DrawerItem(icon: Icons.add_chart_sharp, title: 'ABOUT'),
+   
 ];
-final ItemSecond = [
-  DrawerItem(icon: Icons.home , title: 'title 1'),
-   DrawerItem(icon: Icons.people, title: 'title 2'),
+final itemSecond = [
+    DrawerItem(icon:Icons.flag , title: 'APPLY'),
+  DrawerItem(icon: Icons.message , title: 'CONTACT '),
+   
 
 ];

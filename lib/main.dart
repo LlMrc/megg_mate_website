@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:megg_mate_website/constant/color.dart';
-import 'package:megg_mate_website/widget/display_widget.dart';
+import 'package:megg_mate_website/widget/app_bar_button.dart';
 import 'package:provider/provider.dart';
 
 import 'MyHomePage.dart';

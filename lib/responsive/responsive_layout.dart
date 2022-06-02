@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:megg_mate_website/constant/dimension.dart';
-import 'package:megg_mate_website/responsive/desktop_body.dart';
-import 'package:megg_mate_website/responsive/mobile_body.dart';
-import 'package:megg_mate_website/responsive/tablete_body.dart';
+import 'package:megg_mate_website/page/desktop_body.dart';
+import 'package:megg_mate_website/page/mobile_body.dart';
+import 'package:megg_mate_website/page/tablete_body.dart';
 
 class ResponsiveWidget extends StatelessWidget {
   final Widget? mobilBody;

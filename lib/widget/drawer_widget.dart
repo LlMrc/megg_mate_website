@@ -1,9 +1,13 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:megg_mate_website/constant/dimension.dart';
+import 'package:megg_mate_website/page/application.dart';
+import 'package:megg_mate_website/page/aply.dart';
+import 'package:megg_mate_website/page/home.dart';
 import 'package:megg_mate_website/widget/drawerItem.dart';
 import 'package:provider/provider.dart';
 
+import '../page/About.dart';
+import '../page/contact.dart';
 import '../route/navigator_provider.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -23,33 +27,40 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     final safeArea =
         EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top);
     return SizedBox(
-        width: isCollapsed ? MediaQuery.of(context).size.width * 0.2 : null,
-        child: Drawer(
-          child: Container(
-            color: const Color(0xff2E4C6D),
-            child: Column(
-              children: [
-                Container(
-                    color: Colors.white12,
-                    width: double.infinity,
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 24).add(safeArea),
-                    child: buildHeader(isCollapsed)),
-                buildItemList(items: ItemFirst, isCollapsed: isCollapsed),
-                const SizedBox(height: 24),
-                const Divider(color: Colors.white24,),
-                const SizedBox(height: 24),
-                const Spacer(),
-              buildItemList(items: ItemSecond, isCollapsed: isCollapsed),
-                const SizedBox(
+      width: isCollapsed ? MediaQuery.of(context).size.width * 0.2 : null,
+      child: Drawer(
+        child: Container(
+          color: const Color(0xff2E4C6D),
+          child: Column(
+            children: [
+              Container(
+                  color: Colors.white12,
+                  width: double.infinity,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 24).add(safeArea),
+                  child: buildHeader(isCollapsed)),
+              buildItemList(items: itemFirst, isCollapsed: isCollapsed),
+              const Expanded(child: SizedBox(height: 24)),
+              const Divider(
+                color: Colors.white24,
+              ),
+              const Expanded(child: SizedBox(height: 24)),
+              const Spacer(),
+              buildItemList(
+                  indexOffset: itemFirst.length,
+                  items: itemSecond,
+                  isCollapsed: isCollapsed),
+              const Expanded(
+                child: SizedBox(
                   height: 32,
                 ),
-              
-                      buildCollapsedIcon(isCollapsed, context),
-              ],
-            ),
+              ),
+              Expanded(child: buildCollapsedIcon(isCollapsed, context)),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   buildHeader(bool isCollapsed) => isCollapsed
@@ -64,7 +75,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             ),
             SizedBox(width: 16),
             Text(
-              'Flutter Logo',
+              'MAGG MATE',
               style: TextStyle(fontSize: 32, color: Colors.white),
             )
           ],
@@ -94,10 +105,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           onTap: () {
             final provider =
                 Provider.of<NavigatonProvider>(context, listen: false);
-                
+
             setState(() {
-  provider.toggleCollaps();
-});
+              provider.toggleCollaps();
+            });
           },
         ),
       ),
@@ -105,21 +116,32 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   }
 
   Widget buildItemList(
-          {required List<DrawerItem> items, required bool isCollapsed}) =>
+          {required List<DrawerItem> items,
+          required bool isCollapsed,
+          int indexOffset = 0}) =>
       ListView.separated(
-        padding: isCollapsed?EdgeInsets.zero: padding,
-          shrinkWrap: true,
-          primary: false,
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            final itemIndex = items[index];
-            return buildMenuItems(
+        physics: const NeverScrollableScrollPhysics(),
+        padding: isCollapsed ? EdgeInsets.zero : padding,
+        shrinkWrap: true,
+        primary: false,
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          final itemIndex = items[index];
+
+          return buildMenuItems(
               isCollapsed: isCollapsed,
               text: itemIndex.title,
               icon: itemIndex.icon,
-              onClick: () => selectedIndex(context, index),
-            );
-          }, separatorBuilder: (BuildContext context, int index) =>const SizedBox(height: 16,),);
+              onClick: () {
+                setState(() {
+                  selectedIndex(context, indexOffset + index);
+                });
+              });
+        },
+        separatorBuilder: (BuildContext context, int index) => const SizedBox(
+          height: 16,
+        ),
+      );
 
   Widget buildMenuItems(
       {required bool isCollapsed,
@@ -133,25 +155,49 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     );
     return Material(
       color: Colors.transparent,
-      child:isCollapsed
-      ?ListTile(title: leading, onTap: onClick,)
-      : ListTile(
-        leading: leading,
-        title: Text(
-          text,
-          style: TextStyle(color: color, fontSize: 14),
-        ),
-        onTap: onClick,
-      ),
+      child: isCollapsed
+          ? ListTile(
+              title: leading,
+              onTap: onClick,
+            )
+          : ListTile(
+              leading: leading,
+              title: Text(
+                text,
+                style: const TextStyle(color: color, fontSize: 14),
+              ),
+              onTap: onClick,
+            ),
     );
   }
 
-void  selectedIndex(BuildContext context, int index) {
-  switch (index) {
-    case 0:
-      
-      break;
-    default:
+  void selectedIndex(context, int index) {
+    // ignore: prefer_function_declarations_over_variables
+    final navigateTo = (page) =>
+        Navigator.of(context).push(MaterialPageRoute(builder: (_) => page));
+    
+    Navigator.of(context).pop();
+    switch (index) {
+      case 0:
+        navigateTo(Home());
+        break;
+      case 1:
+        navigateTo(const Application(
+          carrousel: [],
+        ));
+        break;
+      case 2:
+        navigateTo(About());
+        break;
+      case 3:
+        navigateTo(Contact());
+        break;
+      case 4:
+        navigateTo(Blog());
+        break;
+
+      default:
+        Home();
+    }
   }
-}
 }

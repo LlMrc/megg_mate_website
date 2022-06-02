@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+var mobileIndex = 0;
+
+
 const double mobileWidth = 600;
 const double tabletteWidth = 840;
-const double desktopWidth = 1040;
+const double desktopWidth = 1050;
 
 
  List<Image> image = [
