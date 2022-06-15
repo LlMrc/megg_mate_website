@@ -1,65 +1,80 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:megg_mate_website/constant/color.dart';
+
+import 'package:megg_mate_website/page/contact.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../constant/string.dart';
+import '../widget/custom_text.dart';
 
 class About extends StatelessWidget {
-   About({Key? key}) : super(key: key);
-  final String string = '''
-Welcome to Magg Mate, your number one source for all things about Web and Mobile Application. 
-     
-      We're dedicated to providing you the very best of App, with an emphasis on [store characteristic 1],   [store characteristic 2], [store characteristic 3].
-
- Founded in 2021 by @Leonard LLmrc, Magg Mate  web technologies has come a long way from its beginnings in Port of Prince.
- When Megghev team first started out, we' re working to turn our passion for
-  Mobile Application into a booming 
-  website. Let us the opotunity to help you grow your buseness by adding some visiblity.
- we now serve custumers all over the world.
- We hope you enjoy our products as much as we enjoy offering them to you. If you have any ''';
-
-  String seconString = '''  please don't hesitate to contact us.
-
-Sincerely,
-
-LLmrc Leonard''';
+  About({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Material(
       child: Container(
-    
-          alignment: Alignment.center,
+          width: 600,
+          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.bottomCenter,
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 30.0),
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
-                  height: 200,
-                  width: 200,
-                  child: LottieBuilder.network('https://assets8.lottiefiles.com/packages/lf20_wzigwqwi.json')),
+                    height: 160,
+                    width: 200,
+                    child: LottieBuilder.network(
+                        'https://assets8.lottiefiles.com/packages/lf20_wzigwqwi.json')),
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomText(
+                      text: 'About us',
+                      style: GoogleFonts.aBeeZee(fontSize: 30),
+                    )),
+                const SizedBox(
+                  height: 10,
+                ),
                 RichText(
                   text: TextSpan(
-                      text: string,
-                      style: const TextStyle(letterSpacing: 2, fontSize: 16, color: Colors.black87),
+                      text: about,
+                      style: const TextStyle(
+                          letterSpacing: 2,
+                          fontSize: 16,
+                          color: Colors.black87),
                       children: [
                         TextSpan(
                             text: 'questions',
                             style: const TextStyle(
                                 color: Colors.blueAccent, fontSize: 18),
-                            recognizer: TapGestureRecognizer()..onTap = () {}),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => Contact(fontSize: 10)));
+                              }),
                         const TextSpan(
                             text: ' or ',
-                            style: TextStyle(color: Colors.black, )),
+                            style: TextStyle(
+                              color: Colors.black,
+                            )),
                         TextSpan(
                             text: 'comment',
                             style: const TextStyle(
                                 color: Colors.blueAccent, fontSize: 18),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                print('object');
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => Contact(fontSize: 20)));
                               }),
-                        TextSpan(text: seconString, style: const TextStyle(color: Colors.black87))
+                        TextSpan(
+                            text: seconString,
+                            style: const TextStyle(color: Colors.black87))
                       ]),
                 ),
               ],

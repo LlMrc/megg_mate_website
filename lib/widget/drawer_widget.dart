@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:megg_mate_website/constant/dimension.dart';
 import 'package:megg_mate_website/page/application.dart';
-import 'package:megg_mate_website/page/aply.dart';
-import 'package:megg_mate_website/page/home.dart';
+import 'package:megg_mate_website/page/apply.dart';
+import 'package:megg_mate_website/responsive/home.dart';
 import 'package:megg_mate_website/widget/drawerItem.dart';
 import 'package:provider/provider.dart';
 
@@ -32,6 +32,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         child: Container(
           color: const Color(0xff2E4C6D),
           child: Column(
+          
             children: [
               Container(
                   color: Colors.white12,
@@ -172,6 +173,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   }
 
   void selectedIndex(context, int index) {
+  
     // ignore: prefer_function_declarations_over_variables
     final navigateTo = (page) =>
         Navigator.of(context).push(MaterialPageRoute(builder: (_) => page));
@@ -179,21 +181,19 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     Navigator.of(context).pop();
     switch (index) {
       case 0:
-        navigateTo(Home());
+        navigateTo(const Home());
         break;
       case 1:
-        navigateTo(const Application(
-          carrousel: [],
-        ));
+        navigateTo( const Application());
         break;
       case 2:
         navigateTo(About());
         break;
       case 3:
-        navigateTo(Contact());
+        navigateTo( Apply());
         break;
       case 4:
-        navigateTo(Blog());
+        navigateTo( Contact(fontSize: 18,));
         break;
 
       default:

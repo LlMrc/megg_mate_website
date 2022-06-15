@@ -1,12 +1,28 @@
+
 import 'package:flutter/material.dart';
-import 'package:megg_mate_website/constant/color.dart';
-import 'package:megg_mate_website/widget/app_bar_button.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'MyHomePage.dart';
+import 'model/clients_box.dart';
+import 'responsive/home.dart';
 import 'route/navigator_provider.dart';
 
-void main() {
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+        apiKey: "AIzaSyBLl-IcNFF-OaBpCa-6nGglxIDR3zyUxwQ",
+        appId: "1:319272572022:web:ff9c0515b789317f1abb57",
+        messagingSenderId: "319272572022",
+        projectId: "magg-web"),
+  );
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(ClientBoxAdapter());
+    await Hive.openBox<ClientBox>('clientsbox');
+
   runApp(const MyApp());
 }
 
@@ -17,13 +33,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-    create: (context)=> NavigatonProvider(),
+      create: (context) => NavigatonProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue
-        ),
-        home: const MyHomePage(),
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: const Home(),
       ),
     );
   }

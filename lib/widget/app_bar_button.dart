@@ -4,8 +4,8 @@ import 'package:megg_mate_website/constant/color.dart';
 class DisplayWidget extends StatefulWidget {
 
   final String text;
-   VoidCallback onPressed;
-    DisplayWidget({Key? key, 
+ final  VoidCallback onPressed;
+    const DisplayWidget({Key? key, 
 
   required this.text, required this.onPressed})
       : super(key: key);
@@ -14,7 +14,7 @@ class DisplayWidget extends StatefulWidget {
   State<DisplayWidget> createState() => _DisplayWidgetState();
 }
 
-class _DisplayWidgetState extends State<DisplayWidget> {
+class _DisplayWidgetState extends State<DisplayWidget>{
   bool isSelected = false;
 
  
@@ -43,7 +43,7 @@ class _DisplayWidgetState extends State<DisplayWidget> {
                     BoxShadow(
                         blurRadius: blur,
                         offset: distance,
-                        color: Colors.grey[300]!),
+                        color: Colors.grey[400]!),
                   ]),
               child: TextButton(
                   onPressed: widget.onPressed,

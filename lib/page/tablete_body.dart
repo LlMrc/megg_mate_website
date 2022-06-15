@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:store_redirect/store_redirect.dart';
 
 import '../constant/color.dart';
 import '../constant/dimension.dart';
+import 'apply.dart';
 import 'application.dart';
 import 'about.dart';
 import 'contact.dart';
 import '../widget/drawer_widget.dart';
-import 'mobile_body.dart';
 
 class TabletteBody extends StatefulWidget {
   const TabletteBody({Key? key}) : super(key: key);
@@ -16,9 +17,7 @@ class TabletteBody extends StatefulWidget {
 }
 
 class _TabletteBodyState extends State<TabletteBody> {
-  ScrollController _controller = ScrollController();
-  List<Image> _image = image;
-  int index = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,7 +41,11 @@ class _TabletteBodyState extends State<TabletteBody> {
                   ],
                 )),
             MaterialButton(
-                onPressed: () {},
+                onPressed: () =>      StoreRedirect.redirect(
+                          androidAppId: "dev.maggev.io",
+                   //    iOSAppId: "585027354",
+                         ),
+                             
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -73,181 +76,20 @@ class _TabletteBodyState extends State<TabletteBody> {
                 ))
           ],
         ),
-        body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-                child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: mySelectedWidget(
-                  child: Application(carrousel: _image),
-                ),
-              ),
-              Flexible(
-                child: SizedBox(
-                  height: 100,
-                  child: ListView(
-                    controller: _controller,
-                    primary: false,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                       IconButton(onPressed: (){
-                                    _controller.animateTo(_controller.position.maxScrollExtent,
-                                     duration: const Duration(milliseconds: 200),
-                                      curve: Curves.bounceIn);
-                                  },
-                                   icon:  Icon(Icons.arrow_back_ios_new_rounded, 
-                                   size: 50, 
-                                   shadows: [
-                                      Shadow(
-                                     blurRadius: 2,
-                                     color: Colors.grey[300]!,
-                                     offset: Offset(-2,-2)
-                                   ),
-                                     
-                                     const Shadow(
-                                     blurRadius: 4,
-                                     color: Colors.black,
-                                     offset: Offset(2,2)
-                                   ),
-                                   ],
-    
-                                   color: Colors.white,)),
-                      imageContainer(rapport[2], () {
-                        setImageList(rapport);
-                      }),
-                      imageContainer(image[2], () {
-                        setImageList(image);
-                      }),
-                      imageContainer(audio[2], () {
-                        setImageList(audio);
-                      }),
-                      imageContainer(audio[2], () {
-                        setImageList(audio);
-                      }),
-                       Padding(
-                         padding: const EdgeInsets.only(right: 12.0),
-                         child: IconButton(onPressed: (){
-                                            _controller.animateTo(    _controller.position.minScrollExtent,
-                                       duration: const Duration(milliseconds: 200),
-                                        curve: Curves.bounceInOut);
-                                        },
-                                     icon:  Icon(Icons.arrow_forward_ios_rounded,
-                                       color: Colors.white,
-                                       size: 50, 
-                                     shadows: [
-                                        Shadow(
-                                       blurRadius: 2,
-                                       color: Colors.grey[300]!,
-                                       offset: const Offset(-2,-2)
-                                     ),
-                                       
-                                       const Shadow(
-                                       blurRadius: 4,
-                                       color: Colors.black,
-                                       offset: Offset(2,2)
-                                     ),
-                                     ],
-                                     )),
-                       )
-                    ],
-                  ),
-                ),
-              ),
-            ]))),
+        body: const Application(),
+        
         backgroundColor: Colors.white,
       ),
     );
   }
 
-  List<Image> setImageList(List<Image> image) {
-    setState(() => _image = image);
-    return image;
-  }
+  
 
-  Widget imageContainer(Image image, VoidCallback onTap) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration:
-            BoxDecoration(color: blue, borderRadius: BorderRadius.circular(25)),
-        width: 200,
-        child: InkWell(onTap: onTap, child: image),
-      ),
-    );
-  }
 
-  Widget mySelectedWidget({required Widget child}) {
-    switch (index) {
-      case 0:
-        {
-          child = child;
-        }
-        break;
-      case 1:
-        {
-          child = About();
-        }
-        break;
-      case 2:
-        {
-          child = Contact();
-        }
-        break;
-      default:
-        const Text('An error occur');
-    }
+  
 
-    return child;
-  }
+
+ 
 }
 
-class BuildRow extends StatelessWidget {
-  final Widget? child;
-  final Widget? child1;
 
-  const BuildRow({
-    Key? key,
-    this.child,
-    this.child1,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return LimitedBox(
-      maxHeight: 200.0,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Flexible(
-              flex: 20,
-              child: Container(
-                width: 400,
-                decoration: BoxDecoration(
-                    color: blue, borderRadius: BorderRadius.circular(12)),
-                child: child ?? const Icon(Icons.abc),
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Container(width: 8),
-            ),
-            Flexible(
-              flex: 20,
-              child: Container(
-                width: 400,
-                decoration: BoxDecoration(
-                    color: blue, borderRadius: BorderRadius.circular(12)),
-                child: child1 ?? const Icon(Icons.abc),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}

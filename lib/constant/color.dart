@@ -4,3 +4,4 @@ import 'package:flutter/material.dart';
  Color purple = const Color(0xffF7DBF0);
  Color blue = const Color(0xffCDF0EA);
  Color deepPurple = const Color(0xffBEAEE2);
+  Color color = const Color(0xffFFE6E6);

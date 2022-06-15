@@ -8,27 +8,34 @@ const double tabletteWidth = 840;
 const double desktopWidth = 1050;
 
 
- List<Image> image = [
-    Image.asset("assets/images/meggPdf.png"),
-    Image.asset("assets/images/meggPdf1.png"),
-    Image.asset("assets/images/meggPdf2.png"),
-    Image.asset("assets/images/meggPdf3.png"),
-    Image.asset("assets/images/meggPdf4.png")
+ List<Image> pdfview = [
+    Image.asset("assets/pdfview/p.png"),
+    Image.asset("assets/pdfview/p1.png"),
+    Image.asset("assets/pdfview/p2.png"),
+    Image.asset("assets/pdfview/p3.png"),
+    Image.asset("assets/pdfview/p4.png"),
+    
   ];
+
+List<Image> web = [
+    Image.asset("assets/web/w.png"),
+    Image.asset("assets/web/w1.png"),
+  ];
+
 
 List<Image> rapport = [
-    Image.asset("assets/report_app/rapport.jpg"),
-    Image.asset("assets/report_app/rapport1.jpg"),
-    Image.asset("assets/report_app/rapport2.jpg"),
+    Image.asset("assets/rapport/r.png"),
+    Image.asset("assets/rapport/r1.png"),
+    Image.asset("assets/rapport/r2.png"),
+    Image.asset("assets/rapport/r3.png"),
+ 
   ];
-
-
-  
 
 
 List<Image> audio = [
-    Image.asset("assets/audio_app/audio.png"),
-     Image.asset("assets/audio_app/audio1.png"),
-   Image.asset("assets/audio_app/audio2.png"),
+    Image.asset("assets/audio_player/a.png"),
+    Image.asset("assets/audio_player/a1.png"),
+    Image.asset("assets/audio_player/a2.png"),
+    Image.asset("assets/audio_player/a3.png"), 
   ];
 

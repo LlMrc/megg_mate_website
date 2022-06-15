@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:megg_mate_website/constant/color.dart';
-import 'package:megg_mate_website/page/home.dart';
 
-import '../constant/dimension.dart';
+import 'package:megg_mate_website/constant/color.dart';
+
+import 'package:store_redirect/store_redirect.dart';
+
+
 import 'application.dart';
-import 'contact.dart';
+
 import '../widget/drawer_widget.dart';
 
 class MobileBody extends StatefulWidget {
@@ -15,11 +17,9 @@ class MobileBody extends StatefulWidget {
 }
 
 class _MobileBodyState extends State<MobileBody> {
-  List<Image> _image = image;
-
   bool isCollapsed = false;
 
-  
+  var index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +62,10 @@ class _MobileBodyState extends State<MobileBody> {
                             const Text('For android')
                           ],
                         ),
+                        onTap: () => StoreRedirect.redirect(
+                          androidAppId: "dev.maggev.io",
+                          //    iOSAppId: "585027354",
+                        ),
                       ),
                       PopupMenuItem(
                         child: Row(
@@ -75,148 +79,16 @@ class _MobileBodyState extends State<MobileBody> {
                       ),
                     ]),
           ],
-          title:  Text('Mobile', style: TextStyle(color: Colors.grey[300]),),
+          title: Text(
+            'Mobile',
+            style: TextStyle(color: Colors.grey[300]),
+          ),
           centerTitle: true,
         ),
         backgroundColor: Colors.white,
-        body: Column(
-          mainAxisSize: MainAxisSize.max, 
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: mySelectedWidget(
-          child: Application(carrousel: _image),
-        ),
-          ),
-          SizedBox(
-            height: 120,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-               shrinkWrap: true,
-              children: [
-                BuildListView(
-                  image: image[1],
-                  ontap: () {
-                    setImageList(image);
-                         mobileIndex = 1;
-                  },
-                  title: 'Meggev PDF',
-                  subtitle: 'Read book while enjoying your favorite song',
-                ),
-                BuildListView(
-                  image: audio[1],
-                  ontap: () {
-                    setImageList(audio);
-                         mobileIndex = 1;
-                  },
-                  title: 'Audio Player & Photo editor',
-                  subtitle: 'Play audio, edit and share image',
-                ),
-                BuildListView(
-                  image: rapport[1],
-                  ontap: () {
-                    setImageList(rapport);
-                    mobileIndex = 1;
-                  },
-                  title: 'Rapport',
-                  subtitle: 'Organize and optimize your task in the minitery',
-                ),
-              ],
-            ),
-          )
-        ]));
-  }
-
-  Widget mySelectedWidget({required Widget child}) {
-    switch (mobileIndex) {
-      case 0:
-        {
-          child = Home();
-        }
-        break;
-      case 1:
-        {
-          child = child;
-        }
-        break;
-      case 2:
-        {
-          child = Contact();
-        }
-        break;
-      default:
-        const Text('An error occur');
-    }
-
-    return child;
-  }
-
-  List<Image> setImageList(List<Image> image) {
-    setState(() => _image = image);
-    return image;
-  }
-}
-
-class BuildListView extends StatelessWidget {
-  final String title;
-  final String? subtitle;
-  final Widget image;
-  final VoidCallback ontap;
-  const BuildListView({
-    Key? key,
-    required this.ontap,
-    required this.image,
-    required this.title,
-    this.subtitle,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: InkWell(
-        onTap: ontap,
-        child: Card(
-        
-          elevation: 4,
-          color: light,
-         shape: Border.all( color: Colors.grey),
-          shadowColor: Colors.black,
-          child: SizedBox(
-            width: 260,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    height: 100,
-                    width: 150,
-                    child:
-                   Column(children: [
-                     Text(
-                     title,
-                     overflow: TextOverflow.fade,
-                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                    ),
-                    const SizedBox(
-                    height: 8,),
-               Text(
-              subtitle??'',
-            maxLines: 4,
-               overflow: TextOverflow.ellipsis,
-            ),
-                  ],)),
-                ),
-                        
-             Flexible(child: image),
-              ],
-            )),
-        ),
-      ),
-    );
+        body: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          child: SingleChildScrollView(child: Application()),
+        ));
   }
 }
