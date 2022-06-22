@@ -1,0 +1,10 @@
+^C:\USERS\LMC\ANDROIDSTUDIOPROJECTS\MEGG_MATE_WEBSITE\BUILD\WINDOWS\CMAKEFILES\02EF1F936594B1C034481C98C83B3C6E\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

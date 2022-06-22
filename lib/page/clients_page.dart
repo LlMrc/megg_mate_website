@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mailto/mailto.dart';
+
 import 'package:megg_mate_website/model/clients_box.dart';
 import 'package:megg_mate_website/page/request_page.dart';
 import 'package:url_launcher/url_launcher.dart';

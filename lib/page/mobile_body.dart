@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:megg_mate_website/constant/color.dart';
-
-import 'package:store_redirect/store_redirect.dart';
-
-
+import 'package:megg_mate_website/page/main_page.dart';
 import 'application.dart';
-
 import '../widget/drawer_widget.dart';
 
 class MobileBody extends StatefulWidget {
@@ -26,6 +21,8 @@ class _MobileBodyState extends State<MobileBody> {
     return Scaffold(
         drawer: const DrawerWidget(),
         appBar: AppBar(
+          elevation: 0,
+          
           iconTheme: const IconThemeData(color: Colors.black87),
           backgroundColor: light,
           actions: [
@@ -62,10 +59,7 @@ class _MobileBodyState extends State<MobileBody> {
                             const Text('For android')
                           ],
                         ),
-                        onTap: () => StoreRedirect.redirect(
-                          androidAppId: "dev.maggev.io",
-                          //    iOSAppId: "585027354",
-                        ),
+                        onTap: (){},
                       ),
                       PopupMenuItem(
                         child: Row(
@@ -88,7 +82,7 @@ class _MobileBodyState extends State<MobileBody> {
         backgroundColor: Colors.white,
         body: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 8),
-          child: SingleChildScrollView(child: Application()),
+          child: SingleChildScrollView(child: MainPage()),
         ));
   }
 }

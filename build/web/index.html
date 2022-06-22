@@ -14,6 +14,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
+  <!-- / -->
   <base href="/">
 
   <meta charset="UTF-8">
@@ -29,18 +30,18 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>megg_mate_website</title>
+  <title>magg mate</title>
   <link rel="manifest" href="manifest.json">
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = '965196931';
+    var serviceWorkerVersion = '1760994378';
   </script>
+  
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
 <body>
-  
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
@@ -55,43 +56,25 @@
       });
     });
   </script>
-      <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyBLl-IcNFF-OaBpCa-6nGglxIDR3zyUxwQ",
-          authDomain: "magg-web.firebaseapp.com",
-          projectId: "magg-web",
-          storageBucket: "magg-web.appspot.com",
-          messagingSenderId: "319272572022",
-          appId: "1:319272572022:web:ff9c0515b789317f1abb57"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-      </script>
+                </script>
+                <script type="module">
+                  // Import the functions you need from the SDKs you need
+                  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
+                  // TODO: Add SDKs for Firebase products that you want to use
+                  // https://firebase.google.com/docs/web/setup#available-libraries
+                
+                  // Your web app's Firebase configuration
+                  const firebaseConfig = {
+                    apiKey: "AIzaSyBLl-IcNFF-OaBpCa-6nGglxIDR3zyUxwQ",
+                    authDomain: "magg-web.firebaseapp.com",
+                    projectId: "magg-web",
+                    storageBucket: "magg-web.appspot.com",
+                    messagingSenderId: "319272572022",
+                    appId: "1:319272572022:web:ff9c0515b789317f1abb57"
+                  };
+                
+                  // Initialize Firebase
+                  const app = initializeApp(firebaseConfig);
+                </script>
 </body>
-     
-
 </html>
-<!-- <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js";
-    
-    const firebaseConfig = {
-      apiKey: "AIzaSyBlZOoqtOhfTsy-LarvqC1Mmy-sW4F1bj0",
-      authDomain: "web-magg.firebaseapp.com",
-      projectId: "web-magg",
-      storageBucket: "web-magg.appspot.com",
-      messagingSenderId: "103730749005",
-      appId: "1:103730749005:web:6a6b2b03bb0150019b4604"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-  </script> -->

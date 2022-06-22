@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DrawerItem {
   final String title;
@@ -8,14 +9,14 @@ class DrawerItem {
 }
 
 final itemFirst = [
-  DrawerItem(icon: Icons.home , title: 'HOME '),
-   DrawerItem(icon: Icons.adb_sharp, title: 'APPLICATION'),
-    DrawerItem(icon: Icons.add_chart_sharp, title: 'ABOUT'),
+  DrawerItem(icon: FontAwesomeIcons.houseChimney , title: 'HOME '),
+   DrawerItem(icon: FontAwesomeIcons.android, title: 'APPLICATION'),
+    DrawerItem(icon: FontAwesomeIcons.addressBook, title: 'ABOUT'),
    
 ];
 final itemSecond = [
-    DrawerItem(icon:Icons.flag , title: 'APPLY'),
-  DrawerItem(icon: Icons.message , title: 'CONTACT '),
+    DrawerItem(icon:FontAwesomeIcons.fileSignature , title: 'APPLY'),
+  DrawerItem(icon: FontAwesomeIcons.solidMessage , title: 'CONTACT '),
    
 
 ];

@@ -1,10 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:megg_mate_website/widget/custom_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../constant/string.dart';
-import '../page/clients_page.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Footer extends StatelessWidget {
   const Footer({
@@ -16,51 +17,38 @@ class Footer extends StatelessWidget {
     const sizeBox = SizedBox(
       height: 10,
     );
+    double fontsize = 16;
     return Container(
-        height: 100,
-        color: const Color(0xff142F43),
+    decoration:  const BoxDecoration(gradient: LinearGradient(colors: [
+      Color(0xff142F43),
+      Color.fromARGB(255, 159, 78, 34),
+    ],
+     begin: Alignment.topLeft, //begin of the gradient color
+            end: Alignment.bottomRight, //end of the gradient color
+             )),
+       
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            
             SizedBox(
-              width: 500,
-              child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-            CustomText(text: 'ABOUT US',style: TextStyle(
-                                color: Colors.grey.shade400),),
-                sizeBox,
-                const Text(about, maxLines: 4, overflow: TextOverflow.ellipsis,),
-              ]
-            )),
-            SizedBox(
-                child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+                child: Wrap(
+       spacing: 14,
               children:  [
                  CustomText(text: 'QUICK LINK',style: TextStyle(
                                 color: Colors.grey.shade400),),
                 sizeBox,
-                RichText( text: TextSpan(text: 'LinkedIn',style: const TextStyle(
-                                color: Colors.blue),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap =  () =>_launchUrl('https://www.linkedin.com/in/louis-marc-leonard-a57a13192/'))),
+                IconButton(onPressed: ()=> _launchUrl('https://www.linkedin.com/in/louis-marc-leonard-a57a13192/'),
+                  icon: const FaIcon(FontAwesomeIcons.linkedin, size: 50, color: Colors.blue,)),
+             
 
-                RichText( text: TextSpan(text: 'Github',style: const TextStyle(
-                                color: Colors.blue),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap =  () =>_launchUrl('https://github.com/LlMrc'))),
+                 IconButton(onPressed: ()=>_launchUrl('https://github.com/LlMrc'), icon: const FaIcon(FontAwesomeIcons.githubSquare, size: 50, color: Colors.blue,),),
 
 
-                RichText( text: TextSpan(text: 'FaceBook',style: const TextStyle(
-                                color: Colors.blue),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap =  () =>_launchUrl('https://web.facebook.com/Megg-Mate-102954682430141'))),
+                IconButton(onPressed: ()=>  _launchUrl('https://web.facebook.com/Megg-Mate-102954682430141'), icon: const FaIcon(FontAwesomeIcons.facebookSquare, size: 50, color: Colors.blue),),
 
-                RichText( text: TextSpan(text: 'Twitter',style: const TextStyle(
-                                color: Colors.blue),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () =>_launchUrl('https://twitter.com/LouisMcLeonard1?fbclid=IwAR0glusKUabYNC422ku1wpoYpAJ2PCPDmEhksjF5-3tYxwdZIt6V57hSC-I'))),
+                   IconButton(onPressed: ()=>_launchUrl('https://twitter.com/LouisMcLeonard1?fbclid=IwAR0glusKUabYNC422ku1wpoYpAJ2PCPDmEhksjF5-3tYxwdZIt6V57hSC-I'), icon: const FaIcon(FontAwesomeIcons.twitterSquare, size: 50, color: Colors.blue)),
               ],
             )),
             SizedBox(
@@ -70,13 +58,17 @@ class Footer extends StatelessWidget {
                CustomText(text: 'TECHNOLOGIE',style: TextStyle(
                                 color: Colors.grey.shade400),),
                 sizeBox,
-                const Text('Ui design',style: TextStyle(
+                 Text('Ui design',style: TextStyle(
+                   fontSize: fontsize,
                                 color: Colors.blue)),
-                 const Text('Dart',style: TextStyle(
+                  Text('Dart',style: TextStyle(
+                                    fontSize: fontsize,
                                 color: Colors.blue)),
-                  const Text('Flutter',style: TextStyle(
+                   Text('Flutter',style: TextStyle(
+                     fontSize: fontsize,
                                 color: Colors.blue)),
-                    const Text('Firebase',style: TextStyle(
+                     Text('Firebase',style: TextStyle(
+                       fontSize: fontsize,
                                 color: Colors.blue)),
               ],
             )),

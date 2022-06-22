@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:megg_mate_website/constant/dimension.dart';
 import 'package:megg_mate_website/page/application.dart';
 import 'package:megg_mate_website/page/apply.dart';
-import 'package:megg_mate_website/responsive/home.dart';
+import 'package:megg_mate_website/home.dart';
+import 'package:megg_mate_website/page/main_page.dart';
 import 'package:megg_mate_website/widget/drawerItem.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +30,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
       width: isCollapsed ? MediaQuery.of(context).size.width * 0.2 : null,
       child: Drawer(
         child: Container(
+          padding: const EdgeInsets.only(bottom: 14),
           color: const Color(0xff2E4C6D),
           child: Column(
           
@@ -41,11 +42,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       const EdgeInsets.symmetric(vertical: 24).add(safeArea),
                   child: buildHeader(isCollapsed)),
               buildItemList(items: itemFirst, isCollapsed: isCollapsed),
-              const Expanded(child: SizedBox(height: 24)),
+              const SizedBox(height: 24),
               const Divider(
                 color: Colors.white24,
               ),
-              const Expanded(child: SizedBox(height: 24)),
+              const SizedBox(height: 24),
               const Spacer(),
               buildItemList(
                   indexOffset: itemFirst.length,
@@ -57,6 +58,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 ),
               ),
               Expanded(child: buildCollapsedIcon(isCollapsed, context)),
+            
             ],
           ),
         ),
@@ -181,7 +183,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     Navigator.of(context).pop();
     switch (index) {
       case 0:
-        navigateTo(const Home());
+        navigateTo(const MainPage());
         break;
       case 1:
         navigateTo( const Application());
@@ -197,7 +199,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         break;
 
       default:
-        Home();
+      //  Home();
     }
   }
 }

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:store_redirect/store_redirect.dart';
+
 
 import '../constant/color.dart';
-import '../constant/dimension.dart';
-import 'apply.dart';
-import 'application.dart';
-import 'about.dart';
-import 'contact.dart';
 import '../widget/drawer_widget.dart';
+import 'main_page.dart';
 
 class TabletteBody extends StatefulWidget {
   const TabletteBody({Key? key}) : super(key: key);
@@ -41,10 +37,7 @@ class _TabletteBodyState extends State<TabletteBody> {
                   ],
                 )),
             MaterialButton(
-                onPressed: () =>      StoreRedirect.redirect(
-                          androidAppId: "dev.maggev.io",
-                   //    iOSAppId: "585027354",
-                         ),
+                onPressed: () {},
                              
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -76,7 +69,7 @@ class _TabletteBodyState extends State<TabletteBody> {
                 ))
           ],
         ),
-        body: const Application(),
+        body: const MainPage(),
         
         backgroundColor: Colors.white,
       ),

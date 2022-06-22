@@ -11,16 +11,18 @@ import 'package:megg_mate_website/page/contact.dart';
 import 'package:megg_mate_website/model/slide_transition.dart';
 import 'package:megg_mate_website/widget/custom_text.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:store_redirect/store_redirect.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
+import '../animation/fadding.dart';
 import '../constant/string.dart';
-import '../model/animation_fade.dart';
+import '../animation/animation_fade.dart';
 import '../widget/app_bar_button.dart';
 import '../widget/footer.dart';
+import 'main_page.dart';
 
 class DesktopBody extends StatefulWidget {
-  DesktopBody({Key? key, this.idx = 0, this.isVsble = true}) : super(key: key);
+  DesktopBody({Key? key, this.idx = 5, this.isVsble = true}) : super(key: key);
   int idx;
   bool isVsble;
   @override
@@ -58,8 +60,8 @@ class _DesktopBodyState extends State<DesktopBody> {
                           DisplayWidget(
                             text: 'Home',
                             onPressed: () {
-                              isvisible = true;
                               widget.isVsble = true;
+                              isvisible = false;                           
                               setState(() => widget.idx = 0);
                             },
                           ),
@@ -105,163 +107,162 @@ class _DesktopBodyState extends State<DesktopBody> {
                     ])),
             Expanded(
               child: ListView(
+               
+              
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Visibility(
                           visible: widget.isVsble,
-                          child: SizedBox(
-                              width: 230,
+                          child: SizedBox(     
+                            width: 200,               
                               child: sideBarItem1(child: const SizedBox()))),
-                      SizedBox(
-                        width: _width(child: 600),
-                        height: MediaQuery.of(context).size.height,
-                        child: ListView(
-                          shrinkWrap: true,
+                      Flexible(
+                        child: Column(
+                      mainAxisSize: MainAxisSize.min,
                           children: [
                             mySelectedWidget(
-                                child: SizedBox(
-                                    height: 500,
-                                    child: Row(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                  children: [
+                                    const SizedBox(height: 20),
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Shimmer.fromColors(
+                                        baseColor:
+                                            const Color(0xff242F9B),
+                                        highlightColor: Colors
+                                            .deepOrange.shade200,
+                                        child: AnimationTransition(
+                                          delay: 900,
+                                          child: CustomText(
+                                              text:
+                                                  'Welcom to Megg Mate',
+                                              style: GoogleFonts.coda(
+                                                  fontSize: 49,
+                                                  fontWeight:
+                                                      FontWeight.w500,
+                                                  color: const Color(
+                                                      0xff242F9B))),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Align(
+                                        alignment: Alignment.topLeft,
+                                        child: SizedBox(
+                                          width: 450,
+                                          child: CustomText(
+                                              text: string,
+                                              style:
+                                                  GoogleFonts.roboto(
+                                                      fontSize: 35,
+                                                      letterSpacing:
+                                                          1)),
+                                        )),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    AnimationTransition(
+                                      delay: 1000,
+                                      child: Text(text,
+                                          style: GoogleFonts.alatsi(
+                                              fontSize: 35,
+                                              color: const Color
+                                                      .fromARGB(
+                                                  255, 10, 62, 90))),
+                                    ),
+                                    const SizedBox(height: 30),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              const SizedBox(height: 20),
-                                              Align(
-                                                alignment: Alignment.topLeft,
-                                                child: Shimmer.fromColors(
-                                                  baseColor:
-                                                      const Color(0xff242F9B),
-                                                  highlightColor: Colors
-                                                      .deepOrange.shade200,
-                                                  child: AnimationTransition(
-                                                    delay: 900,
-                                                    child: CustomText(
-                                                        text:
-                                                            'Welcom to Megg Mate',
-                                                        style: GoogleFonts.coda(
-                                                            fontSize: 49,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: const Color(
-                                                                0xff242F9B))),
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(height: 5),
-                                              Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: SizedBox(
-                                                    width: 450,
-                                                    child: CustomText(
-                                                        text: string,
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                fontSize: 35,
-                                                                letterSpacing:
-                                                                    1)),
-                                                  )),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              AnimationTransition(
-                                                delay: 1000,
-                                                child: Text(text,
-                                                    style: GoogleFonts.alatsi(
-                                                        fontSize: 35,
-                                                        color: const Color
-                                                                .fromARGB(
-                                                            255, 10, 62, 90))),
-                                              ),
-                                              const SizedBox(height: 30),
-                                              AnimationTransition(
-                                                delay: 2000,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 360),
-                                                  child: ElevatedButton(
-                                                    style: ButtonStyle(
-                                                        shape: MaterialStateProperty.all<
-                                                                RoundedRectangleBorder>(
-                                                            RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            30.0))),
-                                                        minimumSize:
-                                                            MaterialStateProperty
-                                                                .all(const Size(
-                                                                    120, 70))),
-                                                    onPressed: () =>
-                                                      setState(() => widget.idx = 2),
-                                                  
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceAround,
-                                                      children: [
-                                                        CustomText(
-                                                            text: 'Apply Now',
-                                                            style: GoogleFonts
-                                                                .roboto(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        30)),
-                                                        const SizedBox(
-                                                          width: 12,
-                                                        ),
-                                                        const Transition(
-                                                            child: Icon(
-                                                          Icons.arrow_forward,
-                                                          size: 40,
-                                                          color: Color.fromARGB(
-                                                              255,
-                                                              237,
-                                                              204,
-                                                              154),
-                                                        ))
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                         FadeAnimation(
+                                           delay: 2000,
+                                           child: ElevatedButton(
+                                            style: ButtonStyle(
+                                                shape: MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    30.0))),
+                                                minimumSize:
+                                                    MaterialStateProperty
+                                                        .all(const Size(
+                                                            120, 70))),
+                                            onPressed: () =>
+                                              setState(() => widget.idx = 2),
+                                                                                 
+                                            child: CustomText(
+                                                text: 'Enter',
+                                                style: GoogleFonts
+                                                    .roboto(
+                                                        color: Colors
+                                                            .white,
+                                                        fontSize:
+                                                            30)),
+                                                                                 ),
+                                         ),
+                                        FadeAnimation(
+                                          delay: 1000,
+                                          child: ElevatedButton(
+                                            style: ButtonStyle(
+                                                shape: MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    30.0))),
+                                                minimumSize:
+                                                    MaterialStateProperty
+                                                        .all(const Size(
+                                                            120, 70))),
+                                            onPressed: () =>
+                                              setState(() => widget.idx = 2),
+                                          
+                                            child: CustomText(
+                                                text: 'Apply',
+                                                style: GoogleFonts
+                                                    .roboto(
+                                                        color: Colors
+                                                            .white,
+                                                        fontSize:
+                                                            30)),
                                           ),
                                         ),
+                                      
                                       ],
-                                    ))),
-                            const SizedBox(height: 40),
+                                    ),
+                                  ],
+                                )),
+                
                           ],
                         ),
                       ),
                       Visibility(
                         visible: isvisible,
-                        child: Expanded(
-                          child: sideBarItem(
-                              child: SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 2,
-                                  child: Column(
-                                    children: [
-                                      Image.asset(
-                                        'assets/team.png',
-                                      ),
-                                    RichText( text: TextSpan(text: 'created by pch.vector',style: const TextStyle(
-                                color: Colors.grey),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () =>_launchUrl('https://www.freepik.com/vectors/programming-language'))),
-                                    ],
-                                  ))),
-                        ),
+                        child: sideBarItem(
+                            child: Flexible(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset(
+                                    'assets/team.png'),
+                                RichText( text: TextSpan(text: 'created by pch.vector',style: const TextStyle(
+                                                          color: Colors.grey),
+                                                      recognizer: TapGestureRecognizer()
+                                                        ..onTap = () =>_launchUrl('https://www.freepik.com/vectors/programming-language'))),
+                                ],
+                              ),
+                            )),
                       ),
                     ],
                   ),
+                        const SizedBox(height: 60),
                   const Footer(),
                 ],
               ),
@@ -322,7 +323,9 @@ class _DesktopBodyState extends State<DesktopBody> {
     switch (widget.idx) {
       case 0:
         {
-          child = child;
+          child =  const SizedBox(
+            width: 800,
+          child: MainPage());
         }
         break;
       case 1:
@@ -332,7 +335,7 @@ class _DesktopBodyState extends State<DesktopBody> {
         break;
       case 2:
         {
-          child = Apply();
+          child = const Apply();
         }
         break;
       case 3:
@@ -347,47 +350,20 @@ class _DesktopBodyState extends State<DesktopBody> {
           child = About();
         }
         break;
+         case 5:
+        {
+          child = child;
+        }
+        break;
       default:
-        const Text('An error occur');
+        child;
     }
 
     return child;
   }
 
   // select widget///////////////////////////////////////////////////////
-  double _width({required double child}) {
-    switch (widget.idx) {
-      case 0:
-        {
-          child = child;
-        }
-        break;
-      case 1:
-        {
-          child = 1000;
-        }
-        break;
-      case 2:
-        {
-          child = 600;
-        }
-        break;
-      case 3:
-        {
-          child = 1000;
-        }
-        break;
-      case 4:
-        {
-          child = 1000;
-        }
-        break;
-      default:
-        const Text('An error occur');
-    }
 
-    return child;
-  }
 
   Widget sideBarItem1({required Widget child}) {
     switch (widget.idx) {
@@ -435,37 +411,38 @@ class SideBarContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          LinkButton(
-              icon: SizedBox(
-                  child: Image.asset('assets/icon_link/android.png',
-                      fit: BoxFit.cover)),
-              text: 'Download for android',
-              ontap: () {
-                StoreRedirect.redirect(androidAppId: "dev.maggev.io"
-                    //    iOSAppId: "585027354",
-                    );
-              }),
-          LinkButton(
-              icon: SizedBox(
-                  child: Image.asset(
-                'assets/icon_link/iphone.png',
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
-              )),
-              text: 'Download for ios',
-              ontap: () {}),
-          LinkButton(
-              icon: SizedBox(
-                  child: Image.asset('assets/icon_link/windows.png',
-                      width: 50, height: 50, fit: BoxFit.cover)),
-              text: 'Download for windows',
-              ontap: () {}),
-        ]);
+    return SizedBox(
+      width: 300,
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            LinkButton(
+                icon: SizedBox(
+                    child: Image.asset('assets/icon_link/android.png',
+                        fit: BoxFit.cover)),
+                text: 'Download for android',
+                ontap: () {
+                 
+                }),
+            LinkButton(
+                icon: SizedBox(
+                    child: Image.asset(
+                  'assets/icon_link/iphone.png',
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                )),
+                text: 'Download for ios',
+                ontap: () {}),
+            LinkButton(
+                icon: SizedBox(
+                    child: Image.asset('assets/icon_link/windows.png',
+                        width: 50, height: 50, fit: BoxFit.cover)),
+                text: 'Download for windows',
+                ontap: () {}),
+          ]),
+    );
   }
 }
 

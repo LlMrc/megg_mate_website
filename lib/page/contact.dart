@@ -117,6 +117,7 @@ class Contact extends StatelessWidget {
     ));
   }
 
+
   void launchMailto() async {
     final mailtoLink = Mailto(
         to: [('llouismrc2@gmail.com')],

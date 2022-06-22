@@ -10,7 +10,7 @@ import 'package:megg_mate_website/page/request_page.dart';
 import '../constant/color.dart';
 import '../constant/string.dart';
 import '../main.dart';
-import '../model/animation_fade.dart';
+import '../animation/animation_fade.dart';
 import '../model/box_transaction.dart';
 import '../model/clients_box.dart';
 import '../widget/custom_text.dart';
@@ -60,7 +60,7 @@ class _ApplyState extends State<Apply> {
         AnimationTransition(
           delay: 1000,
           child: Container(
-            height: 130,
+            height: 150,
             width: 500,
             decoration: BoxDecoration(
                 image: const DecorationImage(

@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'dart:io';
 import 'dart:ui' as ui;
 import 'dart:typed_data';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart ' as pw;
 import 'package:megg_mate_website/model/clients_box.dart';
 import 'package:flutter/services.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import 'desktop_body.dart';
 
 class RequestPage extends StatefulWidget {
@@ -29,18 +26,18 @@ class _RequestPageState extends State<RequestPage> {
     final ui.Image image = await boundary.toImage();
     final ByteData? byteData =
         await image.toByteData(format: ui.ImageByteFormat.png);
-    final Uint8List pngBytes = byteData!.buffer.asUint8List();
-    await getPdf(pngBytes);
+    final Uint8List pngBytes = byteData!.buffer.asUint8List(); 
+     Image imgs =  await getPdf(pngBytes);
   }
    
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
+  SystemChrome.setPreferredOrientations([
   DeviceOrientation.landscapeLeft,
   DeviceOrientation.landscapeRight,
-]);
-        
-        return RepaintBoundary(
+]);        
+      return 
+        RepaintBoundary(
           key: globalKey,
           child: Scaffold(
               body: Container(
@@ -126,10 +123,11 @@ class _RequestPageState extends State<RequestPage> {
                                       backgroundColor:
                                           MaterialStateProperty.all(Colors.green)),
                                   icon: const Icon(Icons.share),
-                                  onPressed: () {
+                                  onPressed: ()async {
                                     _capturePng();
                                     Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder: (_) => DesktopBody(idx: 1,isVsble: false,)));
+
                                   },
                                   label: const Text('Send')),
                     
